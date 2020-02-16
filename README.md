@@ -1,3 +1,8 @@
+# 感谢P3TERX/Actions-OpenWrt和Lienol/openwrt
+# 通过修改流程文件，使用Lienold openwrt在线编译passwall服务固件
+# 使用P3TERX/Actions-OpenWrt进阶玩法中的云menuconfig，直接 SSH 到 Actions 进行操作（具体看[Read the details in my blog (in Chinese) | 中文教程](https://p3terx.com/archives/build-openwrt-with-github-actions.html)）
+# 这样可以比较灵活，可以自己通过云menuconfig配置路由固件，不需要再导出.config和上传
+
 # Actions-OpenWrt
 
 [![LICENSE](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square&label=LICENSE)](https://github.com/P3TERX/Actions-OpenWrt/blob/master/LICENSE)
