@@ -11,4 +11,4 @@
 - cd openwrt && make menuconfig
 - 完成后按快捷键Ctrl+D或执行exit命令退出，后续编译工作将自动进行。
 - 这样比较灵活，可以根据路由器硬件通过云menuconfig自定义配置固件，不需要再导出.config和上传
-- 进阶玩法请看P3TERX的[Read the details in my blog (in Chinese) | 中文教程](https://p3terx.com/archives/build-openwrt-with-github-actions.html)
+- 进阶玩法请看P3TERX的博客[中文教程](https://p3terx.com/archives/build-openwrt-with-github-actions.html)
