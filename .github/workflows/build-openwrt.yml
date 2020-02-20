@@ -11,8 +11,8 @@ name: Build OpenWrt
 on:
   release:
     types: [published]
-#  push:
-#    branches:
+  push:
+    branches:
 #      - master
 #    paths:
 #      - '.config'
