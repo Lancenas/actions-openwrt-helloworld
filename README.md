@@ -6,7 +6,7 @@
 同分支 （以Lienol OpenWrt源码为例分支dev-master 激进；dev-19.07 OpenWrt官方平稳版；dev-lean-lede lean的源码）。
 - 通过修改diy.sh文件可以自定义默认IP，登陆密码等。
 - 修改流程文件触发条件。
-- 在触发工作流程后，在 Actions 页面等待执行到SSH connection to Actions步骤，会出现下面的信：
+- 在触发工作流程后，在 Actions 页面等待执行到SSH connection to Actions步骤，会出现下面信息：
   To connect to this session copy-n-paste the following into a terminal or browser:
   [ssh Y26QeagDtsPXp2mT6me5cnMRd@nyc1.tmate.io]
   [https://tmate.io/t/Y26QeagDtsPXp2mT6me5cnMRd]
