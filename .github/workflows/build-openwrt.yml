@@ -13,9 +13,9 @@ on:
     types: [published]
   push:
     branches:
-      - master
-  paths:
-     - '.config'
+      - dev-19.07
+#  paths:
+#     - '.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
