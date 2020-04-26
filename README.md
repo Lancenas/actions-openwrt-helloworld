@@ -1,4 +1,4 @@
-# actions-openwrt-helloword
+# actions-openwrt-helloworld
 
 - **感谢** [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)和[Lean/lede](https://github.com/coolsnowwolf/lede)
 - 通过创建流程文件，在线编译hellword服务固件；
