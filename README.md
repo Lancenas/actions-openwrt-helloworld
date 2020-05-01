@@ -3,11 +3,11 @@
 - **感谢** [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)和[coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
 - 通过创建流程文件，在线编译helloworld服务固件；
 - 第一代passwall源码完全停止开发(开源源码已经移除)，基于vuejs脚本语言、焕新UI设计的第二代passwall由Lienol等大神们在私有库闭源开发中，看情况和心情，只有极小可能性以后某天开源，不要过分期待。  
-- ~~修改流程文件`REPO_URL:` 不同库地址（默认Lienol的`https://github.com/Lienol/openwrt` 或者lean的`https://github.com/coolsnowwolf/lede.git`）；`REPO_BRANCH:` 不同分支 （以Lienol OpenWrt源码为例分支`dev-master` 激进；`dev-19.07` OpenWrt官方平稳版；`dev-lean-lede` lean的源码）。~~
+- 修改流程文件`REPO_URL:` 不同库地址（默认lean的`https://github.com/coolsnowwolf/lede.git`或Lienol的`https://github.com/Lienol/openwrt`）；`REPO_BRANCH:` 不同分支 （以Lienol OpenWrt源码为例分支`dev-master` 激进；`dev-19.07` OpenWrt官方平稳版；`dev-lean-lede` lean的源码）。
 - 通过修改`diy-part1.sh`文件修改`feeds.conf.default`配置。默认添加`fw876/helloworld`。  
   有能力可以添加包含`passwall`的`lienol-openwrt-package`试试。
 - 通过修改`diy-part2.sh`文件可以自定义默认IP，登陆密码等。按我的需要现在的默认IP为192.168.1.11
-- 修改流程文件触发条件。
+- 修改流程文件触发条件。默认添加了“`Webhook`”（给 GitHub API 发送一个 `repository dispatch event`(仓库调度事件) 请求，当 API 接收到请求后就会触发相应的 `workflow`）和“`Star`”（点击仓库上的 `Star` 按钮即可触发 `GitHub Actions`的工作流程，为了避免被其他人点击 `Star` 导致的不必要的麻烦，还需要在 `workflow` 文件中加上 `if: github.event.repository.owner.id == github.event.sender.id` 字段，这样只有仓库所有者，也就是你自己点 `Star` 才有效）。
 - 在触发工作流程后，在 Actions 页面等待执行到`SSH connection to Actions`步骤，会出现下面信息：  
   ***
   `To connect to this session copy-n-paste the following into a terminal or browser:` 
