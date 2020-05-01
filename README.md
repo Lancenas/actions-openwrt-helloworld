@@ -20,7 +20,7 @@
 `ACTIONS_TRIGGER_TOKEN` - 带有 repo 权限的 Personal access token  
 `TRIGGER_KEYWORDS` - 自定义 `Webhook` 事件名称，可以为任意值，Actions 列表中会显示此名称。  
 **“`Star`”**（点击仓库上的 `Star` 按钮即可触发 `GitHub Actions`的工作流程，为了避免被其他人点击 `Star` 导致的不必要的麻烦，只有仓库所有者，也就是你自己点 `Star` 才有效）。
-- 在触发工作流程后，默认`SSH_ACTIONS: false`如果需要自选应用就设定`SSH_ACTIONS: true`在 Actions 页面等待执行到`SSH connection to Actions`步骤，会出现下面信息：  
+- 在触发工作流程后，默认`SSH_ACTIONS: true`在 Actions 页面等待执行到`SSH connection to Actions`步骤，会出现下面信息：  
   ***
   `To connect to this session copy-n-paste the following into a terminal or browser:` 
   
