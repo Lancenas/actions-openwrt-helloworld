@@ -44,10 +44,10 @@ jobs:
 
     steps:
     - name: Hello World
-        if: github.event.action == 'helloworld'
-        run: |
-          echo My name is LANCE.
-          echo Hello World!
+      if: contains(github.event.action, 'hello')
+      run: |
+        echo My name is LANCE.
+        echo Hello World!
           
     - name: Checkout
       uses: actions/checkout@master
