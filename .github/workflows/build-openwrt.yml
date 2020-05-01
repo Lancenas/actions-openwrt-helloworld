@@ -44,7 +44,7 @@ jobs:
 
     steps:
     - name: Hello World
-      if: github.event.action == 'helloworld')
+      if: github.event.action == 'helloworld'
       run: |
         echo My name is LANCE.
         echo Hello World!
