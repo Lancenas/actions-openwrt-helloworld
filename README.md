@@ -7,8 +7,20 @@
 - 通过修改`diy-part1.sh`文件修改`feeds.conf.default`配置。默认添加`fw876/helloworld`。  
   有能力可以添加包含`passwall`的`lienol-openwrt-package`试试。
 - 通过修改`diy-part2.sh`文件可以自定义默认IP，登陆密码等。按我的需要现在的默认IP为192.168.1.11
-- 修改流程文件触发条件。默认添加了“`Webhook`”（给 GitHub API 发送一个 `repository dispatch event`(仓库调度事件) 请求，当 API 接收到请求后就会触发相应的 `workflow`）和“`Star`”（点击仓库上的 `Star` 按钮即可触发 `GitHub Actions`的工作流程，为了避免被其他人点击 `Star` 导致的不必要的麻烦，还需要在 `workflow` 文件中加上 `if: github.event.repository.owner.id == github.event.sender.id` 字段，这样只有仓库所有者，也就是你自己点 `Star` 才有效）。
-- 在触发工作流程后，在 Actions 页面等待执行到`SSH connection to Actions`步骤，会出现下面信息：  
+- 修改流程文件触发条件。默认添加两种触发方式：  
+**“`Webhook`”**（给 GitHub API 发送一个 `repository dispatch event`(仓库调度事件) 请求，当 API 接收到请求后就会触发相应的 `workflow`）  
+以下是一个使用 `cURL` 发送请求的例子：  
+`curl -X POST https://api.github.com/repos/:owner/:repo/dispatches \`  
+`     -H "Accept: application/vnd.github.everest-preview+json" \`  
+`     -H "Authorization: token ACTIONS_TRIGGER_TOKEN" \`  
+`     --data '{"event_type": "TRIGGER_KEYWORDS"}'`  
+需要要替换的值：  
+`:owner`- 用户名  
+`:repo` - 需要触发的 Github Action 所在的仓库名称  
+`ACTIONS_TRIGGER_TOKEN` - 带有 repo 权限的 Personal access token  
+`TRIGGER_KEYWORDS` - 自定义 `Webhook` 事件名称，可以为任意值，Actions 列表中会显示此名称。  
+**“`Star`”**（点击仓库上的 `Star` 按钮即可触发 `GitHub Actions`的工作流程，为了避免被其他人点击 `Star` 导致的不必要的麻烦，还需要在 `workflow` 文件中加上 `if: github.event.repository.owner.id == github.event.sender.id` 字段，这样只有仓库所有者，也就是你自己点 `Star` 才有效）。
+- 在触发工作流程后，如果"ture"在 Actions 页面等待执行到`SSH connection to Actions`步骤，会出现下面信息：  
   ***
   `To connect to this session copy-n-paste the following into a terminal or browser:` 
   
