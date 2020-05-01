@@ -10,6 +10,7 @@ name: Build OpenWrt
 
 on:
   repository_dispatch:
+    types: helloworld
   release:
     types: published
   push:
@@ -42,6 +43,12 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
+    - name: Hello World
+        if: github.event.action == 'helloworld'
+        run: |
+          echo My name is LANCE.
+          echo Hello World!
+          
     - name: Checkout
       uses: actions/checkout@master
 
