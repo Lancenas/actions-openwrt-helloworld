@@ -49,10 +49,10 @@ jobs:
         echo My name is LANCE.
         echo Hello World!
           
-    - name: Checkout
+    - name: 查看
       uses: actions/checkout@master
 
-    - name: Initialization environment
+    - name: 初始化环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -65,23 +65,23 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         curl -fsSL https://raw.githubusercontent.com/P3TERX/dotfiles/master/.bashrc >> ~/.bashrc
 
-    - name: Clone source code
+    - name: 克隆源代码
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: Load custom feeds
+    - name: 加载自定义 feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
         ../$DIY_P1_SH
 
-    - name: Update feeds
+    - name: 更新 feeds
       run: cd openwrt && ./scripts/feeds update -a
 
-    - name: Install feeds
+    - name: 安装 feeds
       run: cd openwrt && ./scripts/feeds install -a
 
-    - name: Load custom configuration
+    - name: 加载自定义配置
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
@@ -89,11 +89,11 @@ jobs:
         cd openwrt
         ../$DIY_P2_SH
 
-    - name: SSH connection to Actions
+    - name: SSH连接到操作
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
 
-    - name: Download package
+    - name: 下载包
       id: package
       run: |
         cd openwrt
@@ -102,7 +102,7 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Compile the firmware
+    - name: 编译固件
       id: compile
       run: |
         cd openwrt
@@ -110,14 +110,14 @@ jobs:
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "::set-output name=status::success"
 
-    - name: Upload bin directory
+    - name: 上载bin目录
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: OpenWrt_bin
         path: openwrt/bin
 
-    - name: Organize files
+    - name:  整理档案
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
@@ -126,21 +126,21 @@ jobs:
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
 
-    - name: Upload firmware directory
+    - name: 上载固件目录
       uses: actions/upload-artifact@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: OpenWrt_firmware
         path: ${{ env.FIRMWARE }}
 
-    - name: Upload firmware to cowtransfer
+    - name: 将固件上传到Cowtransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
 
-    - name: Upload firmware to WeTransfer
+    - name: 将固件上传到WeTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
