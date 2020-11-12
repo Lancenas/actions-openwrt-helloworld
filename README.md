@@ -10,7 +10,7 @@
 - 修改流程文件`REPO_URL:` 不同库地址（默认lean的`https://github.com/coolsnowwolf/lede.git`或Lienol的`https://github.com/Lienol/openwrt`）；`REPO_BRANCH:` 不同分支 （以Lienol OpenWrt源码为例分支`dev-master` 激进；`dev-19.07` OpenWrt官方平稳版；`dev-lean-lede` lean的源码）。
 - 通过修改`diy-part1.sh`文件修改`feeds.conf.default`配置。默认添加`fw876/helloworld`。  
   有能力可以添加包含`passwall`的`lienol-openwrt-package`试试。
-- 通过修改`diy-part2.sh`文件可以自定义默认IP，登陆密码等。按我的需要现在的默认IP为192.168.1.11
+- 通过修改`diy-part2.sh`文件可以自定义默认IP，登陆密码等。按我的需要现在的默认IP为192.168.10.9
 - 修改流程触发条件。默认添加两种触发方式：  
 **“`Webhook`”**（给 GitHub API 发送一个 `repository dispatch event`(仓库调度事件) 请求，当 API 接收到请求后就会触发相应的 `workflow`）  
 以下是一个使用 `cURL` 发送请求的例子：  
