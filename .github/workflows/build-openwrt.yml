@@ -50,7 +50,7 @@ jobs:
         echo Hello World!
           
     - name: Checkout
-      uses: actions/checkout@main
+      uses: actions/checkout@master
 
     - name: Initialization environment
       env:
